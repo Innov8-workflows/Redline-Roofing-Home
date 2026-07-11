@@ -118,6 +118,7 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 .svc-card h3{font-size:1.24rem;font-weight:800;margin-bottom:9px}
 .svc-card p{color:var(--muted);font-size:.97rem;margin-bottom:16px;flex:1}
 .svc-more{font-family:var(--display);font-weight:700;color:var(--red);font-size:.94rem;display:inline-flex;align-items:center;gap:6px}
+.svc-more svg{width:16px;height:16px;flex-shrink:0;stroke:var(--red);fill:none;stroke-width:2.4}
 .svc-card:hover .svc-more{gap:10px}
 
 /* before/after video showcase */
