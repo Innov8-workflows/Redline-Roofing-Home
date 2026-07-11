@@ -1,14 +1,16 @@
+# Deploy whitelist — only the live site ships; source/originals stay local
 /*
 !.gitignore
 !index.html
 !review.html
-!hero.jpg
-!hero-video-01.mp4
-!logo-transparent.png
-!b1.jpg
-!before-after-01.mp4
-!2.jpeg
-!3.jpeg
-!4.jpeg
-!5.jpeg
-!6.jpeg
+!sitemap.xml
+!robots.txt
+!assets/
+!roofing/
+!flat-roofing/
+!fascias-soffits/
+!guttering/
+!chimneys-repair/
+!gallery/
+!reviews/
+!contact-us/
