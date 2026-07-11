@@ -336,3 +336,6 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 .trust-accred>span{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .acc-img{height:54px;width:auto}
 @media(max-width:520px){.acc-img{height:46px}.trust-accred{gap:16px}}
+
+.g-rating[href]{cursor:pointer;transition:border-color .2s,transform .15s}
+.g-rating[href]:hover{border-color:var(--navy);transform:translateY(-1px)}
