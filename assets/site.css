@@ -359,19 +359,34 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
   .hero-badges span{font-size:.85rem}
   /* trust strip: 2×2 grid rather than a tall single column */
   .trust-items{grid-template-columns:1fr 1fr}
-  .trust-item{border-right:0;border-bottom:1px solid var(--line);padding:16px 14px}
+  .trust-item{border-right:0;border-bottom:1px solid var(--line);padding:13px 12px}
   /* before/after: tighter stack + slightly smaller video */
   .ba-stack{gap:26px}
-  .ba-vid{max-width:300px}
+  .ba-vid{max-width:240px}
   .ba-desc p{margin-bottom:12px;font-size:.96rem}
   /* tighten stacked two-column blocks */
   .split,.areas-wrap,.contact-grid,.ba-card{gap:22px}
   .split-body p{margin-bottom:11px}
   .band{padding:36px 22px}
   .finalcta{padding:52px 20px}
-  /* footer: trimmed padding/gaps */
+  /* 2-col grids instead of tall 1-col stacks — the biggest scroll savers */
+  .feat-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .feat-card{padding:18px 14px}
+  .feat-card h3{font-size:1.02rem;margin-bottom:6px}
+  .feat-card p{font-size:.86rem}
+  /* service cards: tighter */
+  .svc-grid.two-up .svc-card{padding:16px 14px}
+  .svc-grid.two-up .svc-card h3{font-size:1.02rem}
+  .svc-grid.two-up .svc-card p{font-size:.86rem;margin-bottom:0}
+  /* review card + contact form: tighter */
+  .rev-card-in{padding:20px 18px}
+  .rev-card p{font-size:.94rem;margin-bottom:14px}
+  .ci-row{padding:11px 0}
+  .form{padding:22px 18px}
+  .field{margin-bottom:11px}
+  /* footer: 2-col + trimmed padding/gaps */
   .footer{padding-top:42px}
-  .footer img.foot-logo{width:158px;margin-bottom:14px}
-  .foot-grid{gap:24px}
+  .footer img.foot-logo{width:150px;margin-bottom:14px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:22px 18px}
   .foot-bottom{margin-top:30px}
 }
