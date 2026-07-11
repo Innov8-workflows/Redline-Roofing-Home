@@ -384,9 +384,10 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
   .ci-row{padding:11px 0}
   .form{padding:22px 18px}
   .field{margin-bottom:11px}
-  /* footer: 2-col + trimmed padding/gaps */
+  /* footer: balanced 2-col + trimmed padding/gaps */
   .footer{padding-top:42px}
   .footer img.foot-logo{width:150px;margin-bottom:14px}
-  .foot-grid{grid-template-columns:1fr 1fr;gap:22px 18px}
+  .foot-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 16px}
+  .foot-contact li,.foot-contact a,.foot-links a{overflow-wrap:anywhere}
   .foot-bottom{margin-top:30px}
 }
