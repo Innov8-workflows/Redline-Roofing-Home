@@ -328,3 +328,6 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 .foot-accred>span{font-size:.78rem;color:#8fa0c0;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
 .acc-chip.sm{min-height:64px;padding:8px 16px;border-radius:12px}
 .acc-chip.sm img{max-height:46px}
+
+.hero-accred{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:24px}
+.hero-accred .acc-chip.sm{min-height:60px;padding:7px 15px}
