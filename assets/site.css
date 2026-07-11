@@ -342,3 +342,36 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 
 .rev-platforms{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .rev-platforms .btn-navy .gmark,.rev-platforms .btn-navy svg{background:#fff;border-radius:4px}
+
+/* ===== mobile density pass — condense vertical scroll on phones ===== */
+@media(max-width:720px){
+  .section{padding:38px 0}
+  .section.tight{padding:26px 0}
+  .section-head{margin-bottom:22px}
+  .section-head p{font-size:1rem;margin-top:9px}
+  /* hero: content-driven height instead of 92vh + huge padding */
+  .hero{min-height:auto}
+  .hero-inner{padding:58px 20px 44px}
+  .hero-logo{margin-bottom:14px}
+  .hero p{margin:12px auto 20px;font-size:1.02rem}
+  .hero-actions{gap:10px}
+  .hero-badges{margin-top:20px;gap:12px 18px}
+  .hero-badges span{font-size:.85rem}
+  /* trust strip: 2×2 grid rather than a tall single column */
+  .trust-items{grid-template-columns:1fr 1fr}
+  .trust-item{border-right:0;border-bottom:1px solid var(--line);padding:16px 14px}
+  /* before/after: tighter stack + slightly smaller video */
+  .ba-stack{gap:26px}
+  .ba-vid{max-width:300px}
+  .ba-desc p{margin-bottom:12px;font-size:.96rem}
+  /* tighten stacked two-column blocks */
+  .split,.areas-wrap,.contact-grid,.ba-card{gap:22px}
+  .split-body p{margin-bottom:11px}
+  .band{padding:36px 22px}
+  .finalcta{padding:52px 20px}
+  /* footer: trimmed padding/gaps */
+  .footer{padding-top:42px}
+  .footer img.foot-logo{width:158px;margin-bottom:14px}
+  .foot-grid{gap:24px}
+  .foot-bottom{margin-top:30px}
+}
