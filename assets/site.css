@@ -91,7 +91,7 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 
 /* trust strip */
 .trust{background:#fff;border-bottom:1px solid var(--line)}
-.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.trust-items{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .trust-item{display:flex;align-items:center;gap:13px;padding:24px 18px;border-right:1px solid var(--line)}
 .trust-item:last-child{border-right:0}
 .trust-item svg{width:32px;height:32px;stroke:var(--red);fill:none;stroke-width:1.8;flex-shrink:0}
@@ -228,7 +228,7 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
   .split.rev .split-media{order:0}
   .svc-grid,.feat-grid,.rev-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr 1fr}
-  .trust .wrap{grid-template-columns:1fr 1fr}
+  .trust-items{grid-template-columns:1fr 1fr}
   .trust-item:nth-child(2){border-right:0}
   .ba-media{max-width:340px;margin:0 auto}
 }
@@ -241,7 +241,7 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
   .gal-item.tall{grid-row:span 1}
   .gal-item.wide{grid-column:span 1}
   .field-row{grid-template-columns:1fr}
-  .trust .wrap{grid-template-columns:1fr}
+  .trust-items{grid-template-columns:1fr}
   .trust-item{border-right:0;border-bottom:1px solid var(--line)}
   .hero-actions .btn{width:100%}
   .topbar .tb-right{display:none}
@@ -331,3 +331,8 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 
 .hero-accred{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:24px}
 .hero-accred .acc-chip.sm{min-height:60px;padding:7px 15px}
+
+.trust-accred{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;padding:24px 18px 4px;border-top:1px solid var(--line)}
+.trust-accred>span{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.acc-img{height:54px;width:auto}
+@media(max-width:520px){.acc-img{height:46px}.trust-accred{gap:16px}}
