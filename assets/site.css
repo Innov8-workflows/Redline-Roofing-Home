@@ -294,11 +294,11 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 @media(min-width:961px){.rev-card{flex-basis:33.3333%}}
 
 .finalcta{position:relative;padding:90px 22px;text-align:center;color:#fff;background:var(--fc) center/cover no-repeat;background-color:var(--navy-900)}
-.finalcta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,23,48,.92),rgba(194,24,16,.5))}
+.finalcta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,23,48,.62),rgba(194,24,16,.42))}
 .finalcta-in{position:relative;z-index:2;max-width:720px;margin:0 auto}
 .finalcta .stars{color:var(--gold);font-size:1.4rem;letter-spacing:4px;margin-bottom:14px}
-.finalcta h2{color:#fff;font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800}
-.finalcta p{margin:14px auto 26px;color:rgba(255,255,255,.92);max-width:560px}
+.finalcta h2{color:#fff;font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.finalcta p{margin:14px auto 26px;color:#fff;max-width:560px;text-shadow:0 1px 12px rgba(0,0,0,.55)}
 .finalcta .hero-actions{margin-top:0;justify-content:center}
 
 .nav-menu a{padding:8px 9px;font-size:.9rem}
