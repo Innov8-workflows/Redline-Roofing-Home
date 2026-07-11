@@ -339,3 +339,6 @@ h1,h2,h3,h4{font-family:var(--display);line-height:1.12;letter-spacing:-.01em;co
 
 .g-rating[href]{cursor:pointer;transition:border-color .2s,transform .15s}
 .g-rating[href]:hover{border-color:var(--navy);transform:translateY(-1px)}
+
+.rev-platforms{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.rev-platforms .btn-navy .gmark,.rev-platforms .btn-navy svg{background:#fff;border-radius:4px}
