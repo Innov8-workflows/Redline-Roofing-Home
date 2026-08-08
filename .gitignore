@@ -1,6 +1,7 @@
 # Deploy whitelist — only the live site ships; source/originals stay local
 /*
 !.gitignore
+!CNAME
 !index.html
 !review.html
 !sitemap.xml
