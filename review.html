@@ -22,6 +22,14 @@
 <meta name="twitter:description" content="Enjoyed our work? Leave a quick Google or Facebook review — it only takes 30 seconds.">
 <meta name="twitter:image" content="https://www.redlineroofingandhomesltd.co.uk/assets/img/og-review.jpg">
 <meta name="theme-color" content="#0A1730">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXZZR6697E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZXZZR6697E');
+</script>
 <link rel="icon" type="image/png" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,6 +141,15 @@ h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.4rem;li
       fetch(LEAD_URL,{method:'POST',mode:'no-cors',keepalive:true,
         headers:{'Content-Type':'text/plain;charset=UTF-8'},
         body:JSON.stringify(d)});
+    }catch(e){}
+    /* mirror the same action into GA4 as a conversion event */
+    try{
+      if(typeof gtag==='function'){
+        var ev = d.type==='Quote form'    ? 'generate_lead'
+               : d.type==='Call click'    ? 'click_to_call'
+               : d.type==='WhatsApp click'? 'click_whatsapp' : '';
+        if(ev) gtag('event',ev,{lead_source:d.source||'',page_path:d.page||''});
+      }
     }catch(e){}
   }
 
