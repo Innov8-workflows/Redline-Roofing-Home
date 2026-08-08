@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://script.google.com https://script.googleusercontent.com">
 <meta name="robots" content="noindex">
 <title>Leave a Review &middot; Redline Roofing &amp; Homes Ltd</title>
 <meta name="description" content="Thank you for choosing Redline Roofing &amp; Homes Ltd. Leave us a quick Google or Facebook review — it only takes 30 seconds.">
@@ -119,6 +119,60 @@ h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.4rem;li
   set('googleBtn', GOOGLE_REVIEW_URL, "https://www.google.com/search?q=" + encodeURIComponent("Redline Roofing & Homes Ltd reviews"));
   set('fbBtn', FACEBOOK_REVIEW_URL, "https://www.facebook.com/search/top?q=" + encodeURIComponent("Redline Roofing & Homes Ltd"));
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<!-- Lead logger -> Google Sheet (Apps Script) -->
+<script>
+(function(){
+  var LEAD_URL='https://script.google.com/macros/s/AKfycbxzw7p2XNIn0cgzWnAfyxzSPaNN6l9PL2bSHvyesjcseEUmU2Z1HqtDaLNAItKTbBS9mA/exec';
+
+  /* NEVER navigator.sendBeacon here - it silently drops the /exec cross-origin
+     302 while returning true, so leads vanish with no error anywhere. */
+  function sendLead(d){
+    try{
+      d.page = location.pathname || '/';
+      fetch(LEAD_URL,{method:'POST',mode:'no-cors',keepalive:true,
+        headers:{'Content-Type':'text/plain;charset=UTF-8'},
+        body:JSON.stringify(d)});
+    }catch(e){}
+  }
+
+  function where(el){
+    if(!el||!el.closest) return 'page';
+    if(el.closest('.wa-float')) return 'whatsapp widget';
+    if(el.closest('.topbar')) return 'top bar';
+    if(el.closest('.nav')) return 'nav';
+    if(el.closest('.hero')) return 'hero';
+    if(el.closest('.page-hero')) return 'page hero';
+    if(el.closest('form')) return 'contact form';
+    if(el.closest('.finalcta')) return 'bottom CTA';
+    if(el.closest('.band')) return 'CTA band';
+    if(el.closest('.contact-info')) return 'contact details';
+    if(el.closest('footer')) return 'footer';
+    return 'page';
+  }
+
+  /* Capture phase, so the row is sent before the tel:/wa.me navigation
+     tears the page down. keepalive is what lets it survive unload. */
+  document.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var a=t.closest('a'); if(!a) return;
+    var h=a.getAttribute('href')||'';
+    if(h.indexOf('tel:')===0){
+      sendLead({type:'Call click',phone:h.replace('tel:',''),source:where(a)});
+    } else if(h.indexOf('wa.me')>-1){
+      sendLead({type:'WhatsApp click',source:where(a)});
+    }
+  },true);
+
+  /* Capture phase on document fires BEFORE the form's own submit handler,
+     so the values are read before that handler calls f.reset(). */
+  document.addEventListener('submit',function(e){
+    var f=e.target; if(!f||f.id!=='quoteForm') return;
+    function v(id){var el=document.getElementById(id);return el?String(el.value||'').trim():'';}
+    sendLead({type:'Quote form',name:v('qname'),phone:v('qphone'),
+      service:v('qservice'),details:v('qmsg'),source:'contact form'});
+  },true);
+})();
 </script>
 </body>
 </html>

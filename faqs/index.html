@@ -81,4 +81,58 @@ document.querySelectorAll('#mm a').forEach(function(a){a.addEventListener('click
 var qf=document.getElementById('quoteForm');
 if(qf){qf.addEventListener('submit',function(e){e.preventDefault();var f=this;var msg='New enquiry from the website%0a%0aName: '+encodeURIComponent(f.name.value)+'%0aPhone: '+encodeURIComponent(f.phone.value)+'%0aService: '+encodeURIComponent(f.service.value)+'%0aDetails: '+encodeURIComponent(f.message.value);window.open('https://wa.me/447547575441?text='+msg,'_blank');f.reset();var b=f.querySelector('button[type=submit]');b.textContent='Opening WhatsApp…';setTimeout(function(){b.textContent='Send My Enquiry'},2500);});}
 </script>
+<!-- Lead logger -> Google Sheet (Apps Script) -->
+<script>
+(function(){
+  var LEAD_URL='https://script.google.com/macros/s/AKfycbxzw7p2XNIn0cgzWnAfyxzSPaNN6l9PL2bSHvyesjcseEUmU2Z1HqtDaLNAItKTbBS9mA/exec';
+
+  /* NEVER navigator.sendBeacon here - it silently drops the /exec cross-origin
+     302 while returning true, so leads vanish with no error anywhere. */
+  function sendLead(d){
+    try{
+      d.page = location.pathname || '/';
+      fetch(LEAD_URL,{method:'POST',mode:'no-cors',keepalive:true,
+        headers:{'Content-Type':'text/plain;charset=UTF-8'},
+        body:JSON.stringify(d)});
+    }catch(e){}
+  }
+
+  function where(el){
+    if(!el||!el.closest) return 'page';
+    if(el.closest('.wa-float')) return 'whatsapp widget';
+    if(el.closest('.topbar')) return 'top bar';
+    if(el.closest('.nav')) return 'nav';
+    if(el.closest('.hero')) return 'hero';
+    if(el.closest('.page-hero')) return 'page hero';
+    if(el.closest('form')) return 'contact form';
+    if(el.closest('.finalcta')) return 'bottom CTA';
+    if(el.closest('.band')) return 'CTA band';
+    if(el.closest('.contact-info')) return 'contact details';
+    if(el.closest('footer')) return 'footer';
+    return 'page';
+  }
+
+  /* Capture phase, so the row is sent before the tel:/wa.me navigation
+     tears the page down. keepalive is what lets it survive unload. */
+  document.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var a=t.closest('a'); if(!a) return;
+    var h=a.getAttribute('href')||'';
+    if(h.indexOf('tel:')===0){
+      sendLead({type:'Call click',phone:h.replace('tel:',''),source:where(a)});
+    } else if(h.indexOf('wa.me')>-1){
+      sendLead({type:'WhatsApp click',source:where(a)});
+    }
+  },true);
+
+  /* Capture phase on document fires BEFORE the form's own submit handler,
+     so the values are read before that handler calls f.reset(). */
+  document.addEventListener('submit',function(e){
+    var f=e.target; if(!f||f.id!=='quoteForm') return;
+    function v(id){var el=document.getElementById(id);return el?String(el.value||'').trim():'';}
+    sendLead({type:'Quote form',name:v('qname'),phone:v('qphone'),
+      service:v('qservice'),details:v('qmsg'),source:'contact form'});
+  },true);
+})();
+</script>
 </body></html>
